@@ -1,4 +1,4 @@
-# Table UX Experiment
+# wander-list-test
 
 A Vite + React + TypeScript project for experimenting with table UX patterns, using shadcn/ui components.
 
