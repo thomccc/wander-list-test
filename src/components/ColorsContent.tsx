@@ -144,16 +144,14 @@ export function ColorsContent() {
     const saved = loadSavedColors()
     if (saved) {
       setSavedCustomColors(saved)
-    }
-    
-    // Load saved theme selection (custom takes priority if custom colors exist)
-    const savedTheme = loadSelectedTheme()
-    if (savedTheme && (!saved || savedTheme !== "custom")) {
-      setSelectedThemeId(savedTheme)
-    } else if (saved) {
+      // Always select custom if custom colors exist
       setSelectedThemeId("custom")
-    } else if (savedTheme) {
-      setSelectedThemeId(savedTheme)
+    } else {
+      // Only load saved theme if no custom colors exist
+      const savedTheme = loadSelectedTheme()
+      if (savedTheme) {
+        setSelectedThemeId(savedTheme)
+      }
     }
   }, [])
 

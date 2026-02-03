@@ -72,6 +72,12 @@ export function CustomColorsContent() {
       secondaryBodyTextColor,
     }
     saveColors(colors)
+    // Save "custom" as the selected theme
+    try {
+      localStorage.setItem("selectedThemeId", "custom")
+    } catch (error) {
+      console.error("Failed to save selected theme:", error)
+    }
     navigate("/colors")
   }
 
