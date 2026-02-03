@@ -8,7 +8,7 @@ interface HeaderProps {
   bodyTextColor: string
 }
 
-export function Header({ secondaryBgColor, secondaryTextColor, backgroundColor, bodyTextColor }: HeaderProps) {
+export function Header({ secondaryBgColor, secondaryTextColor, backgroundColor }: HeaderProps) {
   return (
     <div className="content-stretch flex items-center justify-between pl-[48px] pr-[36px] py-[12px] relative size-full" style={{ backgroundColor }}>
       <div className="content-stretch flex flex-[1_0_0] flex-col h-[32px] items-start justify-center min-h-px min-w-px relative">

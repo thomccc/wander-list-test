@@ -9,7 +9,7 @@ interface HomeHeroProps {
   secondaryBodyTextColor: string
 }
 
-export function HomeHero({ bgColor, textColor, backgroundColor, bodyTextColor, secondaryBodyTextColor }: HomeHeroProps) {
+export function HomeHero({ bgColor, textColor, bodyTextColor, secondaryBodyTextColor }: HomeHeroProps) {
   return (
     <div className="content-stretch flex flex-col items-center justify-center py-[80px] relative size-full">
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">

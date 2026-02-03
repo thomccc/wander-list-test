@@ -67,3 +67,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom styles for react-colorful */
+.react-colorful {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-colorful__saturation {
+  border-radius: 4px 4px 0 0;
+}
+
+.react-colorful__hue {
+  height: 24px;
+  border-radius: 0 0 4px 4px;
+}
+
+.react-colorful__pointer {
+  width: 16px;
+  height: 16px;
+}

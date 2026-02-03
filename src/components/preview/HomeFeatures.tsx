@@ -19,7 +19,7 @@ const features = [
   { icon: icon4, text: "Top tier amenities and interior design" },
 ]
 
-export function HomeFeatures({ secondaryBgColor, secondaryTextColor, backgroundColor, bodyTextColor }: HomeFeaturesProps) {
+export function HomeFeatures({ secondaryBgColor, backgroundColor, bodyTextColor }: HomeFeaturesProps) {
   return (
     <div className="content-stretch flex flex-col items-start p-[48px] relative size-full" style={{ backgroundColor }}>
       <div className="content-stretch flex flex-col items-start overflow-clip p-[60px] relative rounded-lg shrink-0 w-full">
