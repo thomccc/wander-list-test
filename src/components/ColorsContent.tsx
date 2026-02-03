@@ -7,6 +7,7 @@ import { HomeHero } from "@/components/preview/HomeHero"
 import { HomePropertyGrid } from "@/components/preview/HomePropertyGrid"
 
 const STORAGE_KEY = "customColors"
+const SELECTED_THEME_KEY = "selectedThemeId"
 
 interface SavedColors {
   textColor: string
@@ -22,6 +23,22 @@ function loadSavedColors(): SavedColors | null {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     return saved ? JSON.parse(saved) : null
+  } catch {
+    return null
+  }
+}
+
+function saveSelectedTheme(themeId: string) {
+  try {
+    localStorage.setItem(SELECTED_THEME_KEY, themeId)
+  } catch (error) {
+    console.error("Failed to save selected theme:", error)
+  }
+}
+
+function loadSelectedTheme(): string | null {
+  try {
+    return localStorage.getItem(SELECTED_THEME_KEY)
   } catch {
     return null
   }
@@ -122,14 +139,27 @@ export function ColorsContent() {
   const [selectedThemeId, setSelectedThemeId] = useState<string>("modern-grey")
   const [savedCustomColors, setSavedCustomColors] = useState<SavedColors | null>(null)
 
-  // Load saved custom colors on mount
+  // Load saved custom colors and selected theme on mount
   useEffect(() => {
     const saved = loadSavedColors()
     if (saved) {
       setSavedCustomColors(saved)
+    }
+    
+    // Load saved theme selection (custom takes priority if custom colors exist)
+    const savedTheme = loadSelectedTheme()
+    if (savedTheme && (!saved || savedTheme !== "custom")) {
+      setSelectedThemeId(savedTheme)
+    } else if (saved) {
       setSelectedThemeId("custom")
+    } else if (savedTheme) {
+      setSelectedThemeId(savedTheme)
     }
   }, [])
+
+  const handleSave = () => {
+    saveSelectedTheme(selectedThemeId)
+  }
 
   return (
     <div className="flex h-full bg-background overflow-hidden">
@@ -145,7 +175,10 @@ export function ColorsContent() {
             >
               <ChevronLeft className="h-4 w-4 text-[#202020]" />
             </button>
-            <button className="h-8 px-2 rounded-full bg-[#202020] text-[#f7f7f7] text-sm font-medium hover:bg-[#202020]/90 transition-colors">
+            <button 
+              onClick={handleSave}
+              className="h-8 px-2 rounded-full bg-[#202020] text-[#f7f7f7] text-sm font-medium hover:bg-[#202020]/90 transition-colors"
+            >
               Save
             </button>
           </div>
