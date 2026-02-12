@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import { Button } from "@wandercom/design-system-web/ui/button"
 
 export function WebsiteContent() {
   return (
@@ -15,7 +15,7 @@ export function WebsiteContent() {
 
       <div className="px-12 pb-12">
         <div className="rounded-lg border border-border/80 bg-[#fafafa] p-8">
-          <Button variant="default" asChild>
+          <Button variant="primary" asChild>
             <Link to="/website/builder">Build my website</Link>
           </Button>
         </div>
