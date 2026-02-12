@@ -1,11 +1,6 @@
+import type { ChangeEvent } from "react"
 import { Link } from "react-router-dom"
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownContent,
-  DropdownItem,
-} from "@wandercom/design-system-web/ui/dropdown"
-import { Button } from "@wandercom/design-system-web/ui/button"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const SEGMENTS = [
@@ -67,6 +62,10 @@ export function BuilderTopBar({
   pageOptions,
   onPageChange,
 }: BuilderTopBarProps) {
+  const handlePageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    onPageChange(event.target.value)
+  }
+
   return (
     <header
       className="relative flex h-[72px] w-full shrink-0 flex-col border-b border-[var(--color-border-primary)] bg-[var(--color-surface-primary)] py-3"
@@ -81,21 +80,17 @@ export function BuilderTopBar({
 
         {/* Center: Home dropdown */}
         <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center">
-          <Dropdown>
-            <DropdownTrigger
-              variant="default"
-              className="min-w-[120px] justify-between"
-            >
-              {pageLabel}
-            </DropdownTrigger>
-            <DropdownContent align="center" sideOffset={8}>
-              {pageOptions.map((page) => (
-                <DropdownItem key={page} onSelect={() => onPageChange(page)}>
-                  {page}
-                </DropdownItem>
-              ))}
-            </DropdownContent>
-          </Dropdown>
+          <select
+            value={pageLabel}
+            onChange={handlePageChange}
+            className="h-9 min-w-[132px] rounded-md border border-[var(--color-border-secondary)] bg-white px-3 text-sm text-[var(--color-neutral-900)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-neutral-300)]"
+          >
+            {pageOptions.map((page) => (
+              <option key={page} value={page}>
+                {page}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Right: Exit + Publish — 14px, 550, Instrument Sans via .builder-top-bar-actions */}
@@ -103,7 +98,7 @@ export function BuilderTopBar({
           <Button variant="ghost" size="sm" asChild>
             <Link to="/website">Exit</Link>
           </Button>
-          <Button variant="primary" size="sm">
+          <Button variant="default" size="sm">
             Publish
           </Button>
         </div>
