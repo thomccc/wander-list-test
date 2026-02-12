@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import "@wandercom/design-system-web/styles.css"
 import './index.css'
 import App from './App.tsx'
 
