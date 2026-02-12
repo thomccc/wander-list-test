@@ -1,9 +1,11 @@
 import { ChevronDown } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
   label: string
+  path?: string
   active?: boolean
 }
 
@@ -19,17 +21,17 @@ interface SidebarProps {
 const navSections: NavSection[] = [
   {
     items: [
-      { label: "Home", active: true },
+      { label: "Home", path: "/" },
       { label: "Calendar" },
       { label: "Reservations" },
-      { label: "Listings" },
+      { label: "Listings", path: "/listings" },
       { label: "Customers" },
     ],
   },
   {
     title: "Channels",
     items: [
-      { label: "Website" },
+      { label: "Website", path: "/website" },
       { label: "Wander" },
     ],
   },
@@ -51,6 +53,8 @@ const navSections: NavSection[] = [
 ]
 
 export function Sidebar({ className }: SidebarProps) {
+  const location = useLocation()
+
   return (
     <div
       className={cn(
@@ -93,23 +97,39 @@ export function Sidebar({ className }: SidebarProps) {
             )}
 
             {/* Navigation Items */}
-            {section.items.map((item, itemIndex) => (
-              <div
-                key={itemIndex}
-                className={cn(
-                  "flex flex-col h-9 items-start justify-center px-3 py-2 rounded-lg shrink-0 w-[224px] transition-colors cursor-pointer",
-                  item.active
-                    ? "bg-[#f7f7f7] text-[#202020]"
-                    : "text-[#5f5f5f] hover:bg-muted/50"
-                )}
-              >
-                <div className="flex items-center shrink-0 w-full">
-                  <span className="text-sm font-medium whitespace-nowrap">
-                    {item.label}
-                  </span>
+            {section.items.map((item, itemIndex) => {
+              const isActive = item.path
+                ? location.pathname === item.path || location.pathname.startsWith(item.path + "/")
+                : item.active || false
+              
+              const content = (
+                <div
+                  className={cn(
+                    "flex flex-col h-9 items-start justify-center px-3 py-2 rounded-lg shrink-0 w-[224px] transition-colors",
+                    isActive
+                      ? "bg-[#f7f7f7] text-[#202020]"
+                      : "text-[#5f5f5f] hover:bg-muted/50",
+                    item.path && "cursor-pointer"
+                  )}
+                >
+                  <div className="flex items-center shrink-0 w-full">
+                    <span className="text-sm font-medium whitespace-nowrap">
+                      {item.label}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+
+              return item.path ? (
+                <Link key={itemIndex} to={item.path} className="w-full">
+                  {content}
+                </Link>
+              ) : (
+                <div key={itemIndex}>
+                  {content}
+                </div>
+              )
+            })}
           </div>
         ))}
       </div>
