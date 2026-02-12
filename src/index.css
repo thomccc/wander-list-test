@@ -2,6 +2,170 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Wander design system token variables (for @wandercom/design-system-web Button etc.) */
+@layer base {
+  :root {
+    --color-neutral-50: oklch(0.97614 0 0);
+    --color-neutral-100: oklch(0.95514 0 0);
+    --color-neutral-150: oklch(0.93705 0 0);
+    --color-neutral-200: oklch(0.86069 0 0);
+    --color-neutral-800: oklch(0.31714 0 0);
+    --color-neutral-1000: oklch(0 0 0);
+    --color-button-primary: var(--color-neutral-1000);
+    --color-text-button-primary: var(--color-neutral-50);
+    --color-button-hover-primary: var(--color-neutral-800);
+    --color-button-focus-primary: var(--color-neutral-800);
+  }
+  /* Primary button text + hover + focus (design system expects these) */
+  [data-slot="button"].bg-button-primary {
+    color: var(--color-text-button-primary);
+  }
+  [data-slot="button"].bg-button-primary:hover {
+    background-color: var(--color-button-hover-primary);
+  }
+  [data-slot="button"].bg-button-primary:focus-visible {
+    background-color: var(--color-button-focus-primary);
+  }
+}
+
+/* Instrument Sans — Wander design system font */
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../node_modules/@wandercom/design-system-fonts/instrument-sans/instrument-sans.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Wander design system: full tokens for /website (and subpages) */
+.wander-ds {
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  --color-neutral-0: oklch(1 0 0);
+  --color-neutral-50: oklch(0.97614 0 0);
+  --color-neutral-100: oklch(0.95514 0 0);
+  --color-neutral-150: oklch(0.93705 0 0);
+  --color-neutral-200: oklch(0.86069 0 0);
+  --color-neutral-300: oklch(0.78576 0 0);
+  --color-neutral-450: oklch(0.68622 0 0);
+  --color-neutral-550: oklch(0.4855 0 0);
+  --color-neutral-700: oklch(0.40912 0 0);
+  --color-neutral-800: oklch(0.31714 0 0);
+  --color-neutral-900: oklch(0.24353 0 0);
+  --color-neutral-950: oklch(0.19573 0 0);
+  --color-neutral-1000: oklch(0 0 0);
+  --color-red-500: oklch(0.63683 0.20785 25.33215);
+  --color-green-600: oklch(0.48737 0.12354 153.74605);
+  --color-green-700: oklch(0.41014 0.10446 153.51835);
+  --color-blue-500: oklch(0.56769 0.16655 251.31375);
+  --color-surface-primary: var(--color-neutral-0);
+  --color-surface-secondary: var(--color-neutral-50);
+  --color-surface-tertiary: var(--color-neutral-100);
+  --color-border-primary: oklch(0 0 0 / 0.051);
+  --color-border-secondary: oklch(0 0 0 / 0.078);
+  --color-primary: var(--color-neutral-900);
+  --color-secondary: var(--color-neutral-550);
+  --color-destructive: var(--color-red-500);
+  --color-muted: var(--color-neutral-200);
+  --color-button-primary: var(--color-neutral-1000);
+  --color-button-secondary: var(--color-neutral-100);
+  --color-button-outline: oklch(1 0 0 / 0);
+  --color-button-ghost: oklch(0.931 0 0 / 0);
+  --color-button-destructive: oklch(0.63683 0.20785 25.33215 / 0.122);
+  --color-button-checkout: var(--color-green-600);
+  --color-text-button-primary: var(--color-neutral-50);
+  --color-button-hover-primary: var(--color-neutral-800);
+  --color-button-hover-secondary: var(--color-neutral-150);
+  --color-button-hover-outline: var(--color-neutral-100);
+  --color-button-hover-ghost: var(--color-neutral-100);
+  --color-button-hover-destructive: oklch(0.63683 0.20785 25.33215 / 0.2);
+  --color-button-hover-checkout: var(--color-green-700);
+  --color-button-focus-primary: var(--color-button-hover-primary);
+  --color-button-focus-secondary: var(--color-button-hover-secondary);
+  --color-button-focus-outline: var(--color-button-hover-outline);
+  --color-button-focus-ghost: var(--color-button-hover-ghost);
+  --color-button-focus-destructive: var(--color-button-hover-destructive);
+  --color-button-focus-checkout: var(--color-button-hover-checkout);
+}
+
+/* Design system button hover/focus for all variants (inside .wander-ds) */
+.wander-ds [data-slot="button"].bg-button-secondary:hover,
+.wander-ds [data-slot="button"].bg-button-secondary:focus-visible {
+  background-color: var(--color-button-hover-secondary);
+}
+.wander-ds [data-slot="button"].bg-button-outline:hover,
+.wander-ds [data-slot="button"].bg-button-outline:focus-visible {
+  background-color: var(--color-button-hover-outline);
+}
+.wander-ds [data-slot="button"].bg-button-ghost:hover,
+.wander-ds [data-slot="button"].bg-button-ghost:focus-visible {
+  background-color: var(--color-button-hover-ghost);
+}
+.wander-ds [data-slot="button"].bg-button-destructive:hover,
+.wander-ds [data-slot="button"].bg-button-destructive:focus-visible {
+  background-color: var(--color-button-hover-destructive);
+}
+.wander-ds [data-slot="button"].bg-button-checkout:hover,
+.wander-ds [data-slot="button"].bg-button-checkout:focus-visible {
+  background-color: var(--color-button-hover-checkout);
+}
+
+/* Builder top bar: Exit + Publish use 14px, weight 550, Instrument Sans */
+.wander-ds .builder-top-bar-actions [data-slot="button"] {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+/* Minimal Wander utility fallback for Tailwind v3 builds (Vercel + local parity) */
+@layer utilities {
+  .bg-button-primary {
+    background-color: var(--color-button-primary);
+  }
+  .bg-button-secondary {
+    background-color: var(--color-button-secondary);
+  }
+  .bg-button-outline {
+    background-color: var(--color-button-outline);
+  }
+  .bg-button-ghost {
+    background-color: var(--color-button-ghost);
+  }
+  .bg-button-destructive {
+    background-color: var(--color-button-destructive);
+  }
+  .bg-button-checkout {
+    background-color: var(--color-button-checkout);
+  }
+  .bg-surface-primary {
+    background-color: var(--color-surface-primary);
+  }
+  .bg-surface-secondary {
+    background-color: var(--color-surface-secondary);
+  }
+  .bg-surface-modal {
+    background-color: var(--color-surface-primary);
+  }
+  .border-secondary {
+    border-color: var(--color-border-secondary);
+  }
+  .text-tertiary {
+    color: var(--color-neutral-450);
+  }
+  .text-body {
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+  }
+  .text-body-lg {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+  .shadow-dropdown {
+    box-shadow:
+      0px 2px 8px 0px oklch(0 0 0 / 0.031),
+      0px 2px 16px 0px oklch(0 0 0 / 0.051);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -86,4 +250,22 @@
 .react-colorful__pointer {
   width: 16px;
   height: 16px;
+}
+
+/* SortableJS animations */
+.sortable-ghost {
+  opacity: 0.4 !important;
+  transition: opacity 0.2s ease;
+}
+
+.sortable-chosen {
+  opacity: 0.7 !important;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.sortable-drag {
+  opacity: 0.5 !important;
+  transition: opacity 0.2s ease;
 }
