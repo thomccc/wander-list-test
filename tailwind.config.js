@@ -4,7 +4,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@wandercom/design-system-web/dist/**/*.js",
   ],
   theme: {
     extend: {
@@ -25,15 +24,15 @@ export default {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "var(--color-primary)",
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "var(--color-secondary)",
+          DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
-          DEFAULT: "var(--color-muted)",
+          DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
@@ -41,7 +40,7 @@ export default {
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
-          DEFAULT: "var(--color-destructive)",
+          DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         border: "hsl(var(--border))",
@@ -54,31 +53,6 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
-        // Wander design system semantic tokens
-        tertiary: "var(--color-tertiary)",
-        selected: "var(--color-border-selected)",
-        "surface-primary": "var(--color-surface-primary)",
-        "surface-secondary": "var(--color-surface-secondary)",
-        "surface-modal": "var(--color-surface-modal)",
-        "border-primary": "var(--color-border-primary)",
-        "border-secondary": "var(--color-border-secondary)",
-        // Wander button tokens
-        "button-primary": "var(--color-button-primary)",
-        "button-secondary": "var(--color-button-secondary)",
-        "button-outline": "var(--color-button-outline)",
-        "button-ghost": "var(--color-button-ghost)",
-        "button-destructive": "var(--color-button-destructive)",
-        "button-checkout": "var(--color-button-checkout)",
-        "text-button-primary": "var(--color-text-button-primary)",
-      },
-      fontSize: {
-        "body-sm": ["0.75rem", { lineHeight: "0.9375rem" }],
-        body: ["0.875rem", { lineHeight: "1.0625rem" }],
-        "body-lg": ["1rem", { lineHeight: "1.25rem" }],
-      },
-      boxShadow: {
-        dropdown:
-          "0px 2px 8px 0px oklch(0 0 0 / 0.031), 0px 2px 16px 0px oklch(0 0 0 / 0.051)",
       },
     },
   },
